@@ -9,10 +9,8 @@ const getters = {
   ALL_PRODUCTS: (state, getters, rootState) => {
     // // eslint-disable-next-line no-debugger
     // debugger;
-    if (!state.filteredProducts.length && !rootState.search.keyword) {
+    if (!rootState.search.keyword) {
       return state.products;
-    } else if (state.filteredProducts.length && rootState.search.keyword) {
-      return state.filteredProducts;
     } else if (rootState.search.keyword) {
       return state.filteredProducts;
     } else {
@@ -31,10 +29,6 @@ const actions = {
   filterProducts({ commit, state }, payload) {
     const result = state.products.filter((p) =>
       p.name.toLowerCase().includes(payload)
-    );
-    console.log(
-      "🚀 ~ file: products.js ~ line 31 ~ filterProducts ~ result",
-      result
     );
     commit("SET_FILTERED_PRODUCTS", result);
   },
